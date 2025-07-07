@@ -1,11 +1,13 @@
+# -*- coding: utf-8 -*-
+
 from math import cos, sin, pi
 
-model = mdb.models['Testing']
-part = model.parts['Plate']
+model = mdb.models['Model-1']
+part = model.parts['Part-1']
 
 # Circle parameters
-x_center = 0.0
-y_center = 0.0
+x_center = 200.0
+y_center = 200.0
 z_top = 3.0
 radius = 100.0
 num_vertices = 32
@@ -21,13 +23,12 @@ for i in range(num_vertices):
     x = x_center + radius * cos(angle)
     y = y_center + radius * sin(angle)
     z = z_top
-
     try:
         vertex = part.vertices.findAt(((x, y, z),))
-        set_name = 'vertex_{}'.format(i + 1)
+        set_name = 'S{}'.format(i + 1)
         part.Set(vertices=(vertex,), name=set_name)
-        print("? Created set:", set_name)
+        print("Created set:", set_name)
     except:
-        print("? Could not find vertex near:", (x, y, z))
+        print(" Could not find vertex near:", (x, y, z))
 
 
